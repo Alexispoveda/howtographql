@@ -1,7 +1,8 @@
-FROM python:3
+FROM python:3.6.7-alpine
 ENV PYTHONUNBUFFERED 1
 RUN mkdir /code
 WORKDIR /code
-COPY . /code/
-COPY requirements.txt /code/
+ADD requirements.txt /code/
 RUN pip install -r requirements.txt
+ADD ./ /code/
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8001"]
